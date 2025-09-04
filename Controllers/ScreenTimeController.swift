@@ -16,7 +16,7 @@ extension ScreenTimeController {
     func loadMockData() {
         isLoading = true
         currentDataModel = ScreenTimeDataModel(
-            screenTime: 14400,
+            screenTime: 14425,
             unlockCount: 42,
             timeForApps: [
                 "Instagram": 3600,

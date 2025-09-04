@@ -14,7 +14,7 @@ struct ContentView: View {
             if controller.isLoading {
                 ProgressView()
             } else if let data = controller.currentDataModel {
-                Text("Время: \(data.screenTime)")
+                Text("Время: \(TimeFormatter.format(data.screenTime))")
                 Text("Разблокировок: \(data.unlockCount)")
             } else {
                 Button("Загрузить") { controller.loadMockData() }
