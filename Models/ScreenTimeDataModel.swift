@@ -7,7 +7,7 @@
 
 import DataDetection
 
-final class ScreenTimeData {
+final class ScreenTimeDataModel {
     let date = Date()
 
     private(set) var screenTime: TimeInterval = 0
@@ -30,7 +30,7 @@ final class ScreenTimeData {
     }
 }
 
-extension ScreenTimeData {
+extension ScreenTimeDataModel {
     func setUnlockCount(_ unlockCount: Int) {
         guard unlockCount >= 0 else { return }
         self.unlockCount = unlockCount

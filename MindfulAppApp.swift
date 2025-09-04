@@ -13,7 +13,7 @@ struct MindfulAppApp: App {
 
     var body: some Scene {
         WindowGroup {
-            
+            ContentView()
         }
     }
 }

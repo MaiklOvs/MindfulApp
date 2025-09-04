@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var controller = ScreenTimeController()
     var body: some View {
-        Text("MindfulApp запущен!")
+        VStack {
+            if controller.isLoading {
+                ProgressView()
+            } else if let data = controller.currentDataModel {
+                Text("Время: \(data.screenTime)")
+                Text("Разблокировок: \(data.unlockCount)")
+            } else {
+                Button("Загрузить") { controller.loadMockData() }
+            }
+        }
     }
 }
 
