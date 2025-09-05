@@ -10,6 +10,14 @@ import SwiftUI
 final class ScreenTimeController: ObservableObject {
     @Published var currentDataModel: ScreenTimeDataModel?
     @Published var isLoading = false
+
+    init() {
+        setupNotifications()
+    }
+
+    deinit {
+        deinitNotifications()
+    }
 }
 
 extension ScreenTimeController {
@@ -25,5 +33,23 @@ extension ScreenTimeController {
             ]
         )
         isLoading = false
+    }
+
+    private func setupNotifications() {
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didBecomeActiveNotification,
+            object: nil,
+            queue: OperationQueue.main,
+            using: { notification in
+                if let currentDataModel = self.currentDataModel {
+                    currentDataModel.setUnlockCount(currentDataModel.currentUnlockCount + 1)
+                    self.objectWillChange.send()
+                }
+            }
+        )
+    }
+
+    private func deinitNotifications() {
+        NotificationCenter.default.removeObserver(self)
     }
 }
